@@ -1,7 +1,3 @@
-/**
- * Cell.js — Individual board cell
- * Uses React.memo to avoid re-renders when the cell value hasn't changed.
- */
 import React, { memo } from 'react';
 
 const Cell = memo(function Cell({ value, index, onClick, isWinning, isBestMove, isCandidate, candidateScore }) {

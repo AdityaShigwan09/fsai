@@ -1,16 +1,6 @@
-/**
- * InfoPanel.js — AI Decision Visualization
- *
- * When Debug Mode is ON, this panel shows:
- *  - Every candidate move the AI evaluated
- *  - The Minimax score for each move
- *  - Which move was chosen as best (and why)
- *  - A step-by-step explanation of the decision
- */
 import React, { memo } from 'react';
 
-const InfoPanel = memo(function InfoPanel({ aiScores, bestMoveIndex, bestScore, thinking, debugMode }) {
-  if (!debugMode) return null;
+const InfoPanel = memo(function InfoPanel({ aiScores, bestMoveIndex, bestScore, thinking }) {
 
   return (
     <aside className="info-panel">
@@ -69,8 +59,8 @@ const InfoPanel = memo(function InfoPanel({ aiScores, bestMoveIndex, bestScore, 
               {bestScore > 0
                 ? '🟢 Positive score → AI is in a winning position.'
                 : bestScore < 0
-                ? '🔴 Negative score → AI is playing defensively to delay a loss.'
-                : '🟡 Score of 0 → Best achievable outcome is a draw.'}
+                  ? '🔴 Negative score → AI is playing defensively to delay a loss.'
+                  : '🟡 Score of 0 → Best achievable outcome is a draw.'}
             </p>
           </div>
 

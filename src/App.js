@@ -3,7 +3,7 @@
  */
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import Board from './components/Board';
-import InfoPanel from './components/InfoPanel';
+// import InfoPanel from './components/InfoPanel';
 import GameTree from './components/GameTree';
 import { checkWinner, checkDraw, applyMove } from './logic/gameLogic';
 import { getBestMove } from './logic/aiLogic';
@@ -16,7 +16,6 @@ export default function App() {
   const [currentPlayer, setCurrentPlayer] = useState('X');
   const [winner, setWinner] = useState(null);
   const [isDraw, setIsDraw] = useState(false);
-  const [debugMode, setDebugMode] = useState(false);
   const [showTree, setShowTree] = useState(false);
   const [aiThinking, setAiThinking] = useState(false);
   const [aiResult, setAiResult] = useState(null);
@@ -29,7 +28,7 @@ export default function App() {
     const draw = !result && checkDraw(newBoard);
     setBoard(newBoard);
     if (result) { setWinner(result); return; }
-    if (draw)   { setIsDraw(true);  return; }
+    if (draw) { setIsDraw(true); return; }
     setCurrentPlayer('O');
   }, [board, winner, isDraw, currentPlayer, aiThinking]);
 
@@ -47,7 +46,7 @@ export default function App() {
       setBoard(newBoard);
       setAiThinking(false);
       if (winResult) { setWinner(winResult); return; }
-      if (draw)      { setIsDraw(true);      return; }
+      if (draw) { setIsDraw(true); return; }
       setCurrentPlayer('X');
     }, 420);
     return () => clearTimeout(thinkTimeout.current);
@@ -66,9 +65,9 @@ export default function App() {
   const statusMessage = winner
     ? winner.winner === 'X' ? '🎉 You Win!' : '🤖 AI Wins!'
     : isDraw ? "🤝 It's a Draw!"
-    : aiThinking ? '🧠 AI is thinking…'
-    : currentPlayer === 'X' ? '👆 Your turn (X)'
-    : '⏳ AI turn (O)';
+      : aiThinking ? '🧠 AI is thinking…'
+        : currentPlayer === 'X' ? '👆 Your turn (X)'
+          : '⏳ AI turn (O)';
 
   return (
     <div className="app">
@@ -82,9 +81,6 @@ export default function App() {
       </header>
 
       <div className="controls">
-        <button className={`toggle-btn ${debugMode ? 'toggle-on' : ''}`} onClick={() => setDebugMode(d => !d)}>
-          {debugMode ? '🔍 Debug ON' : '🔍 Debug OFF'}
-        </button>
         <button className={`toggle-btn ${showTree ? 'toggle-on' : ''}`} onClick={() => setShowTree(s => !s)}>
           {showTree ? '🌲 Tree ON' : '🌲 Tree OFF'}
         </button>
@@ -100,9 +96,8 @@ export default function App() {
             board={board}
             onCellClick={handleCellClick}
             winLine={winner ? winner.line : null}
-            aiScores={debugMode && aiResult ? aiResult.scores : null}
-            bestMoveIndex={debugMode && aiResult ? aiResult.bestMoveIndex : null}
-            debugMode={debugMode}
+            aiScores={aiResult ? aiResult.scores : null}
+            bestMoveIndex={aiResult ? aiResult.bestMoveIndex : null}
           />
           <div className="player-tags">
             <div className="player-tag tag-human">
@@ -113,13 +108,12 @@ export default function App() {
             </div>
           </div>
         </div>
-        <InfoPanel
+        {/* <InfoPanel
           aiScores={aiResult ? aiResult.scores : null}
           bestMoveIndex={aiResult ? aiResult.bestMoveIndex : null}
           bestScore={aiResult ? aiResult.bestScore : null}
           thinking={aiThinking}
-          debugMode={debugMode}
-        />
+        /> */}
       </div>
 
       {showTree && (
