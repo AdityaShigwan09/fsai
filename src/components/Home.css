@@ -1,0 +1,114 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    /* Adjust based on navbar height */
+    text-align: center;
+}
+
+.home-content {
+    max-width: 800px;
+    padding: 3rem;
+    background: rgba(22, 22, 28, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+}
+
+.home-title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    font-weight: 900;
+}
+
+.title-x {
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.title-o {
+    color: #ff00ff;
+    text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+.title-sep {
+    color: #8fa0c0;
+    font-size: 3rem;
+}
+
+.typing-container {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.typing-text {
+    font-size: 1.5rem;
+    color: #bbccdd;
+    font-family: monospace;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    color: #00ffff;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.home-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.play-button,
+.about-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.play-button {
+    background: linear-gradient(135deg, #00ffff, #0088ff);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.play-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+}
+
+.about-button {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
