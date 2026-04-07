@@ -1,20 +1,5 @@
-/**
- * GameTree.js — Visual Game Tree (depth 2)
- *
- * Renders a tree of game states explored by the AI.
- * Each node shows:
- *   - A mini board representation
- *   - The Minimax score for that state
- *   - Whether it was pruned (dimmed + strikethrough)
- *   - Whether it lies on the optimal path (highlighted)
- *
- * GAME THEORY NOTE:
- * The tree demonstrates how Minimax backs up values from leaves to the root.
- * Alpha-Beta pruned nodes are shown dimmed — the AI never needed to look at them.
- */
 import React, { memo, useMemo } from 'react';
 
-// Tiny board renderer (3×3 as a 15×15 grid of dots)
 function MiniBoard({ board, highlightMove }) {
   if (!board) return <div className="mini-board mini-board-empty">✂️ pruned</div>;
   return (
@@ -31,7 +16,6 @@ function MiniBoard({ board, highlightMove }) {
   );
 }
 
-// Find the optimal path (sequence of moves from root to best leaf)
 function findOptimalPath(node, isMax = true) {
   if (!node.children || node.children.length === 0) return [node.move];
   const best = node.children
@@ -58,7 +42,6 @@ const TreeNode = memo(function TreeNode({ node, depth, optimalMoves, isOptimal }
         {isOptimal && !node.pruned && <div className="node-optimal-badge">★ optimal</div>}
       </div>
 
-      {/* Recursively render children */}
       {!node.pruned && node.children && node.children.length > 0 && depth < 2 && (
         <div className="tree-children">
           {node.children.map((child, i) => {
